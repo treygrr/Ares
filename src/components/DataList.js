@@ -7,15 +7,25 @@ class DataList extends React.Component {
         this.props.fetch();
     }
 
+    logToConsole(val) {
+        console.log(val);
+    }
+
+    renderList() {
+        return this.props.posts.map(post => {
+            return (
+                <article className="card" key={post.trackId} onClick={() => { this.logToConsole(post) }}>
+                    {post.trackId}
+                </article>
+            );
+        });
+    }
+
     render() {
-        console.log(this.props.posts.data);
+        console.log(this.props.posts);
         return (
             <section className="pad10">
-                <div className="card">List of Datapoints</div>
-                <div className="card">List of Datapoints</div>
-                <div className="card">List of Datapoints</div>
-                <div className="card">List of Datapoints</div>
-                <div className="card">List of Datapoints</div>
+                {this.renderList()}
             </section>
         );
     }

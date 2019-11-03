@@ -17,7 +17,7 @@ const getCurrentTime = () => {
 }
 
 export const fetch = () => {
-    console.log('waitittiaoskdjfa;slkdjf');
+    
     return async dispatch => {
         const response = await SSR.get(endpoint, {
             headers: {
@@ -30,6 +30,8 @@ export const fetch = () => {
                expand: expandURL
             }
         });
-        dispatch({ type: 'FETCH', payload: response });
+        dispatch({ type: 'FETCH', payload: response.data.items });
+        console.log('alkjasdfl;kjasf');
+        console.log(response.data);
     };
 };

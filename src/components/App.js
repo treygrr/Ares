@@ -6,7 +6,7 @@ import DataList from './DataList'
 const App = () => {
     return (
         <main className="wrapper flex flex-row position-absolute">
-            <section className="three shadow position-relative z-front">
+            <section className="scroll hideXOverflow three shadow position-relative z-front">
                 <DataList></DataList>
             </section>
             <section className="seven position-relative z-back">
