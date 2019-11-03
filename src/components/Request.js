@@ -1,6 +1,5 @@
 import React from 'react';
 import Axios from 'axios';
-import { timeout } from 'q';
 
 class Request extends React.Component {
 
