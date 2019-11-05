@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetch } from '../actions';
+import { fetch, currentMarker } from '../actions';
 
 class DataList extends React.Component {
     componentDidMount() {
@@ -8,13 +8,20 @@ class DataList extends React.Component {
     }
 
     logToConsole(val) {
-        console.log(val);
+        console.log(this.props.selectedMarker);
     }
 
     renderList() {
         return this.props.posts.map(post => {
             return (
-                <article className="card" key={post.trackId} onClick={() => { this.logToConsole(post) }}>
+                <article 
+                    className="card"
+                    key={post.trackId} 
+                    onClick={() => {
+                        this.props.currentMarker(post);
+                        this.logToConsole(post);
+                    }}
+                >
                     {post.trackId}
                 </article>
             );
@@ -22,17 +29,23 @@ class DataList extends React.Component {
     }
 
     render() {
-        console.log(this.props.posts);
         return (
-            <section className="pad10">
+            <section 
+                className="pad10"
+            >
                 {this.renderList()}
+                
             </section>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    return { posts: state.posts };
+    console.log(state);
+    return { 
+        posts: state.posts,
+        selectedMarker: state.currentMarker
+    };
 }
 
-export default connect(mapStateToProps, { fetch })(DataList);
+export default connect(mapStateToProps, { fetch, currentMarker })(DataList);
