@@ -17,7 +17,6 @@ const getCurrentTime = () => {
 }
 
 export const fetch = () => {
-    
     return async dispatch => {
         const response = await SSR.get(endpoint, {
             headers: {
@@ -30,8 +29,10 @@ export const fetch = () => {
                expand: expandURL
             }
         });
-        dispatch({ type: 'FETCH', payload: response.data.items });
-        console.log('alkjasdfl;kjasf');
-        console.log(response.data);
+        dispatch({ type: 'FETCH', payload: response.data });
     };
 };
+
+export const currentMarker = (data) => {
+    return { type: 'SELECT_MARKER', payload: data };
+}
