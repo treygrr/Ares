@@ -1,20 +1,11 @@
 import SSR from '../apis/ssr';
-
+import time from '../apis/Time'
 let apiAuth = 'Basic X2RlbW9fOl9kZW1vXzAw';
 let endpoint = '/gtctracks';
 let pageURL = '1';
 let sizeURL = '2000';
 let expandURL = 'detail';
 
-const getCurrentTime = () => {
-    let current = new Date();
-    let date = current.getFullYear() + '-' + (current.getMonth()+1) + '-' + current.getDate();
-    let time = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
-
-    return date + "T" + time + "Z";
-
-    // The Z here is for Zulu? All hail Zulu the keeper of time zones.
-}
 
 export const fetch = () => {
     return async dispatch => {
@@ -25,7 +16,7 @@ export const fetch = () => {
             params: {
                page: pageURL,
                size: sizeURL,
-               updateSince: getCurrentTime(),
+               updateSince: time(),
                expand: expandURL
             }
         });
@@ -35,4 +26,16 @@ export const fetch = () => {
 
 export const currentMarker = (data) => {
     return { type: 'SELECT_MARKER', payload: data };
+}
+
+export const getTime = () => {
+    return { 
+        type: 'GET_LAST_CHECKED_TIME'
+     };
+}
+
+export const setTime = (time) => {
+    return { 
+        type: 'SET_TIME', payload: time
+     };
 }

@@ -13,12 +13,12 @@ class Markers extends React.Component {
 
     color(markerData) {
         if (this.props.selectedMarker !== null){
-            console.log(this.props.selectedMarker);
             if (markerData.trackId === this.props.selectedMarker.trackId) {
                 return 'red';
             }
             return 'white';
         }
+        return 'white';
     }
 
     render() {
@@ -29,12 +29,13 @@ class Markers extends React.Component {
                 key={marker.trackId}
                 icon={{
                     path: svg,
-                    scale: 1,
+                    scale: .4,
                     rotation: marker.kinematics.course,
                     opacity: .75,
                     strokeColor: this.color(marker),
                     fillColor: 'white'
                 }}
+               
                 position={{ lat: marker.position.latitude, lng: marker.position.longitude }}
                 >
                 </Marker>

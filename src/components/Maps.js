@@ -14,9 +14,7 @@ class Maps extends Component {
     if (data !== null) {
       return { lat: data.position.latitude, lng: data.position.longitude };
     }
-    
-    console.log(data);
-    return { lat: 33.5, lng: -118.417931 };
+    return { lat: 33.766161, lng: -118.234951 };
   }
 
   render() {

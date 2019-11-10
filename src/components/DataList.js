@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetch, currentMarker } from '../actions';
+import { fetch, currentMarker, getTime, setTime } from '../actions';
 
 class DataList extends React.Component {
     componentDidMount() {
         this.props.fetch();
+        
     }
 
     logToConsole(val) {
-        console.log(this.props.selectedMarker);
+        console.log(this.props);
     }
 
     renderList() {
@@ -33,19 +34,17 @@ class DataList extends React.Component {
             <section 
                 className="pad10"
             >
-                {this.renderList()}
-                
+                {this.renderList()}                
             </section>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return { 
         posts: state.posts,
-        selectedMarker: state.currentMarker
+        selectedMarker: state.currentMarker,
     };
 }
 
-export default connect(mapStateToProps, { fetch, currentMarker })(DataList);
+export default connect(mapStateToProps, {fetch, currentMarker })(DataList);
